@@ -1,0 +1,1 @@
+INSERT INTO `config` (`name`, `value`) VALUES ('priority', '[{"name":"腾讯视频","mark":"tx","index":1},{"name":"爱奇艺视频","mark":"iqy","index":2},{"name":"优酷视频","mark":"yk","index":3},{"name":"BiliBili","mark":"bl","index":4},{"name":"芒果TV","mark":"mg","index":5},{"name":"其他平台","mark":"unknown","index":6}]');

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: VbenApi
+  flyway:
+    enabled: true
+    clean-disabled: true
+    baseline-on-migrate: true
+  datasource:
+    druid:
+      validation-query: select 1
+mybatis-plus:
+  type-aliases-package: skiree.host.abetsy.*
+  #  configuration:
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #    map-underscore-to-camel-case: true

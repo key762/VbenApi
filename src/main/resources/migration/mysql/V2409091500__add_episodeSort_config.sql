@@ -1,0 +1,1 @@
+INSERT INTO `config` (`name`, `value`) VALUES ('episodeSort', 'true');
