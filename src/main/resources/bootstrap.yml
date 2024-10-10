@@ -9,7 +9,7 @@ spring:
     druid:
       validation-query: select 1
 mybatis-plus:
-  type-aliases-package: skiree.host.abetsy.*
+  type-aliases-package: com.abetsy.vben.*
   #  configuration:
   #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   #    map-underscore-to-camel-case: true

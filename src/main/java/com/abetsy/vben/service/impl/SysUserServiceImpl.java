@@ -7,10 +7,10 @@ import com.abetsy.vben.dao.SysUserMapper;
 import com.abetsy.vben.entity.SysUser;
 import com.abetsy.vben.param.LoginParam;
 import com.abetsy.vben.service.SysUserService;
+import com.abetsy.vben.utils.i18n.VbenException;
 import com.abetsy.vben.vo.InfoVo;
 import com.abetsy.vben.vo.LoginVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Slf4j
 @Service
 public class SysUserServiceImpl implements SysUserService {
 
@@ -32,12 +31,12 @@ public class SysUserServiceImpl implements SysUserService {
         SysUser selectOne = sysUserMapper.selectOne(userQueryWrapper);
         // 密码判断
         if (selectOne == null) {
-            throw new RuntimeException("用户不存在");
+            VbenException.locale("account.no.found", new Object[]{param.getUsername()});
         }
         // 加密密码
 //        String encryptedPassword = BCrypt.hashpw("myPassword", BCrypt.gensalt());
         if (!BCrypt.checkpw(selectOne.getSalt()+param.getPassword(), selectOne.getPassword())) {
-            throw new RuntimeException("密码错误");
+            VbenException.locale("account.password.error");
         }
         StpUtil.login(selectOne.getUid());
         LoginVo loginVo = new LoginVo();

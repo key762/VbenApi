@@ -12,6 +12,11 @@ spring:
     url: jdbc:postgresql://175.178.54.6:5432/vben
     username: root
     password: 1q2w3e4R
+  messages:
+    basename: i18n/international
+    fallback-to-system-locale: true
+    encoding: UTF-8
+    cache-duration: 3600
 
 mybatis-plus:
   global-config:
