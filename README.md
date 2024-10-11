@@ -40,3 +40,56 @@
     }),
   );
 ```
+
+``需要改动apps/web-ele/vite.config.mts文件的请求地址``
+```js
+import { defineConfig } from '@vben/vite-config';
+
+import ElementPlus from 'unplugin-element-plus/vite';
+
+export default defineConfig(async () => {
+    return {
+        application: {},
+        vite: {
+            plugins: [
+                ElementPlus({
+                    format: 'esm',
+                }),
+            ],
+            server: {
+                proxy: {
+                    '/api': {
+                        changeOrigin: true,
+                        rewrite: (path) => path.replace(/^\/api/, ''),
+                        // mock代理目标地址
+                        // target: 'http://localhost:5320/api',
+                        // VbenApi地址
+                        target: 'http://localhost:8067/api',
+                        ws: true,
+                    },
+                },
+            },
+        },
+    };
+});
+```
+
+``需要关闭apps/web-ele/.env.development的Nitro Mock服务``
+```properties
+# 端口号
+VITE_PORT=5777
+
+VITE_BASE=/
+
+# 接口地址
+VITE_GLOB_API_URL=/api
+
+# 是否开启 Nitro Mock服务，true 为开启，false 为关闭
+VITE_NITRO_MOCK=false
+
+# 是否打开 devtools，true 为打开，false 为关闭
+VITE_DEVTOOLS=false
+
+# 是否注入全局loading
+VITE_INJECT_APP_LOADING=true
+```
