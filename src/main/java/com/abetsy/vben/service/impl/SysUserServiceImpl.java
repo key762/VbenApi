@@ -31,7 +31,7 @@ public class SysUserServiceImpl implements SysUserService {
         SysUser selectOne = sysUserMapper.selectOne(userQueryWrapper);
         // 密码判断
         if (selectOne == null) {
-            VbenException.locale("account.no.found", new Object[]{param.getUsername()});
+            VbenException.locale("account.no.found", param.getUsername());
         }
         // 加密密码
 //        String encryptedPassword = BCrypt.hashpw("myPassword", BCrypt.gensalt());

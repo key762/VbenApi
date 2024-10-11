@@ -18,7 +18,7 @@ public class VbenException extends RuntimeException {
         locale(messageKey, new Object[]{});
     }
 
-    public static void locale(String messageKey, Object[] messageValue) {
+    public static void locale(String messageKey, Object... messageValue) {
         Locale locale = LocaleContextHolder.getLocale();
         throw new VbenException(messageKey, messageValue, locale);
     }
